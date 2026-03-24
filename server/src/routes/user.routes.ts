@@ -26,6 +26,7 @@ router.get("/:id/posts/:postId", (req, res) => {
   res.json(req.params);
 });
 
+router.get("/", userController.getUsers);
 
 export const userSchema = z.object({
   name: z.string().min(3),
@@ -34,6 +35,8 @@ export const userSchema = z.object({
 });
 
 router.post("/", validate(userSchema), userController.createUser);
+
+router.put("/update-score", userController.updateUserScore);
 
 /* validation middleware
 
@@ -61,8 +64,7 @@ router.post("/", validateUser, (req, res) => {
 */
 
 router.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
- console.error(err);
-
+  console.error(err);
   res.status(err.status || 500).json({
     success: false,
     message: err.message,
