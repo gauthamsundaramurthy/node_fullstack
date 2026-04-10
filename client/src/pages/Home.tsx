@@ -16,7 +16,7 @@ function Home () {
     }
 
     const createUser = useCallback(async () => {
-        const res = await fetch("http://localhost:5000/users", {
+        const res = await fetch("http://localhost:5000/users", { // TODO send credentials
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
