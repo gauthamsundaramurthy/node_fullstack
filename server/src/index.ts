@@ -1,4 +1,5 @@
 import express, { Router, Request, Response, NextFunction } from "express";
+import session from "express-session";
 import path from "path";
 import cors from "cors";
 import apiRouter from './routes/api-routes';
@@ -10,6 +11,20 @@ const app = express();
 
 dotenv.config();
 connectDB();
+
+// 🔐 Session setup
+app.use(
+  session({
+    secret: "super-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false, // true in production (HTTPS)
+      maxAge: 1000 * 60 * 30, // 30 mins
+    },
+  })
+);
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 console.log('process.env.DB_PORT', process.env.DB_URL);
