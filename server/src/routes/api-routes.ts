@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { loginController } from '../controllers/auth.controller';
+import { loginController, logoutController } from '../controllers/auth.controller';
 
 const router = Router();
 
@@ -14,5 +14,7 @@ function alreadyLoggedIn(req: Request, res: Response, next: NextFunction) {
 }
 
 router.post("/login", alreadyLoggedIn, loginController);
+
+router.post("/logout", logoutController);
 
 export default router;

@@ -38,3 +38,21 @@ export const loginController = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const logoutController = async (req: Request, res: Response) => {
+  // 🔥 Step 1: Destroy session in store
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({
+        message: 'Logout failed'
+      });
+    }
+
+    // 🔥 Step 2: Clear cookie in browser
+    res.clearCookie('connect.sid');
+
+    return res.json({
+      message: 'Logged out successfully'
+    });
+  });
+};
