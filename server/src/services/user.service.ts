@@ -27,6 +27,14 @@ export const updateScoreByEmail = async (email: string, score: number) => {
   return updatedUser;
 };
 
+export const getUserByEmailAndPassword = async (email: string, password: string) => {
+  const user = await User.findOne({ email, password });
+
+  if (!user) return null;
+
+  return user;
+};
+
 export const deleteUser = async (id: string) => {
   return await User.findByIdAndDelete(id);
 };

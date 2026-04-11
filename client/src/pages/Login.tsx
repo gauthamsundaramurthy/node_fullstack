@@ -28,8 +28,6 @@ function Login() {
         setLoading(true);
         setError('');
 
-        console.log('*** login submitted *** ', formData);
-
         try {
             const response = await fetch('http://localhost:5000/api/login', {
                 method: 'POST',
