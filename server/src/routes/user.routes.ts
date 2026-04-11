@@ -31,6 +31,7 @@ router.get("/", userController.getUsers);
 export const userSchema = z.object({
   name: z.string().min(3),
   email: z.string().email(),
+  password: z.string().min(5),
   age: z.number().min(18)
 });
 
