@@ -30,7 +30,10 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 console.log('process.env.DB_PORT', process.env.DB_URL);
 
 // registers common middlewares
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // 🔥 must be exact
+    credentials: true                // 🔥 allow cookies
+  }));
 app.use(express.json());
 
 function logger(req: Request, res: Response, next: NextFunction){

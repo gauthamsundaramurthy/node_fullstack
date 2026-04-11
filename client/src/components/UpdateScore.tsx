@@ -35,6 +35,7 @@ function UpdateScore() {
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({
           email: formData.email,
           score: formData.score

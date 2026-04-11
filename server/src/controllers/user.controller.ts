@@ -23,6 +23,10 @@ export const updateUserScore = async (req: Request, res: Response) => {
       });
     }
 
+    if(!(req.session as any).user) {
+        res.status(401).json({ message: "User does not exist" });
+    }
+
     const updatedUser = await userService.updateScoreByEmail(email, score);
 
     return res.status(200).json({
