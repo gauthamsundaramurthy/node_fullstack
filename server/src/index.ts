@@ -1,6 +1,7 @@
 import express, { Router, Request, Response, NextFunction } from "express";
 import session from "express-session";
 import path from "path";
+import MongoStore from 'connect-mongo';
 import cors from "cors";
 import apiRouter from './routes/api-routes';
 import userRouter from './routes/user.routes';
@@ -15,9 +16,14 @@ connectDB();
 // 🔐 Session setup
 app.use(
   session({
+    name: 'connect.sid', // cookie name
     secret: "super-secret-key",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_URL!,
+      collectionName: 'sessions'
+    }),
     cookie: {
       httpOnly: true,
       secure: false, // true in production (HTTPS)
