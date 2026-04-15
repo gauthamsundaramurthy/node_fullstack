@@ -3,8 +3,8 @@ import session from "express-session";
 import path from "path";
 import MongoStore from 'connect-mongo';
 import cors from "cors";
-import apiRouter from './routes/api-routes';
-import userRouter from './routes/user.routes';
+import apiRouter from './routes/session/api-routes';
+import userRouter from './routes/session/user.routes';
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 
@@ -51,8 +51,8 @@ app.use(logger);
 
 /* route module */
 
-app.use("/users", userRouter);
-app.use("/api", apiRouter);
+app.use("/session/users", userRouter);
+app.use("/session/api", apiRouter);
 
 app.get("/", (req, res) => {
   res.send("Node + TypeScript server running");

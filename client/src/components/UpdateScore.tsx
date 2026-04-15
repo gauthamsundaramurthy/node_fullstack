@@ -30,7 +30,7 @@ function UpdateScore() {
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      const res = await fetch("http://localhost:5000/users/update-score", {
+      const res = await fetch("http://localhost:5000/session/users/update-score", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

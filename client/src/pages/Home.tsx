@@ -9,7 +9,7 @@ function Home () {
 
     const handleLogout = useCallback(async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/logout', {
+            const res = await fetch('http://localhost:5000/session/api/logout', {
                 method: 'POST',
                 credentials: 'include' // 🔥 MUST
             });

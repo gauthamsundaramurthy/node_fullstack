@@ -27,7 +27,7 @@ function CreateUser() {
     const handleOnSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:5000/users", { // TODO send credentials
+        const res = await fetch("http://localhost:5000/session/users", { // TODO send credentials
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
