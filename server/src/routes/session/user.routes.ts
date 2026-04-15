@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { z } from "zod";
 import CustomError from "../../custom-error";
-import * as userController from "../../controllers/user.controller";
+import * as userController from "../../controllers/session/user.controller";
 import { validate } from '../../middleware/validate.middleware';
 
 const router = Router();

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-
-import * as userService from "../services/user.service";
+import * as userService from "../../services/user.service";
 
 export const createUser = async (req: Request, res: Response) => {
   const user = await userService.createUser(req.body);
@@ -13,7 +12,6 @@ export const getUsers = async (req: Request, res: Response) => {
 };
 
 export const updateUserScore = async (req: Request, res: Response) => {
-  console.log('****************** update user score', req.body)
   try {
     const { email, score } = req.body;
 

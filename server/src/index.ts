@@ -3,8 +3,11 @@ import session from "express-session";
 import path from "path";
 import MongoStore from 'connect-mongo';
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import apiRouter from './routes/session/api-routes';
+import jwtApiRouter from './routes/jwt/api-routes';
 import userRouter from './routes/session/user.routes';
+import jwtUserRouter from './routes/jwt/user.routes';
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 
@@ -41,6 +44,7 @@ app.use(cors({
     credentials: true                // 🔥 allow cookies
   }));
 app.use(express.json());
+app.use(cookieParser());
 
 function logger(req: Request, res: Response, next: NextFunction){
     console.log("Incoming request: logger fn", req.ip, req.method, req.url, req.headers);
@@ -53,6 +57,9 @@ app.use(logger);
 
 app.use("/session/users", userRouter);
 app.use("/session/api", apiRouter);
+
+app.use("/jwt/api", jwtApiRouter);
+app.use("/jwt/users", jwtUserRouter);
 
 app.get("/", (req, res) => {
   res.send("Node + TypeScript server running");
